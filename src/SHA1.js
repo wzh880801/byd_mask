@@ -1,3 +1,4 @@
+
 "use strict";
 function r(r) {
 	return c(n(o(r), r.length * h))
