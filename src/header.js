@@ -1,4 +1,4 @@
-var r = require("./sha1");
+var r = require("./SHA1");
 
 function e(e) {
     e = e || 32;
