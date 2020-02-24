@@ -125,7 +125,7 @@ Accept-Encoding: gzip, deflate
 4. 在Fiddler上找到`POST https://weixin54.bydauto.com.cn/weixin/mina/?service=mina.decryptCode ` 这个请求，记录返回的 `session_id`（请勿泄露你的`session_id`，这相当于你的用户名密码）(`session_id`有2个小时有效期，把握好这个时间)
 5. clone这个仓库，进入到src文件夹，打开命令行，安装依赖项，`npm install http`、`npm install request`、`npm install js-beautify` 如果你运行的时候还提示有module找不到，按照提示自行安装
 6. 在 迪粉汇+ 小程序里，`我的` -> `收货地址`, 维护好你的收货地址并记录这些信息
-7. 打开index.js，更新`var session_id = "<your session_id got by Fiddler>";` 里面的session_id值， 更新函数 `submit_mask_order` 里你的 `body` 为你的收货地址信息（和6中的一致）
+7. 打开index.js，更新`var session_id = "<your session_id got by Fiddler>";` 里面的session_id值， 更新函数 `submit_mask_order` 里你的 `body` 为你的收货地址信息（和6中的一致）(**`重要!重要!!重要!!!`**)
 8. 在src目录打开bash（可以使用git-bash（https://github.com/git-for-windows/git/releases/download/v2.25.1.windows.1/Git-2.25.1-64-bit.exe）），运行 `node ./index.js`, 观察返回，如果返回是如下信息，那么恭喜你。如果不是，请重复8.
 ```json
 {
