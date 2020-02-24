@@ -122,7 +122,7 @@ Accept-Encoding: gzip, deflate
 1. 电脑上安装nodejs，我的版本是`v12.11.1`（http://nodejs.cn/download/）
 2. 电脑上安装Fiddler，并启用对HTTPS流量的捕获（https://www.telerik.com/download/fiddler），怎么启用自己度娘哈。
 3. 电脑上安装微信客户端，登录并打开 迪粉汇+ 小程序, 登录。
-4. 在Fiddler上找到`POST https://weixin54.bydauto.com.cn/weixin/mina/?service=mina.decryptCode ` 这个请求，记录返回的 `session_id`（请勿泄露你的`session_id`，这相当于你的用户名密码）(`session_id`有2个小时有效期，把握好这个时间)
+4. 在Fiddler上找到`POST https://weixin54.bydauto.com.cn/weixin/mina/?service=mina.decryptCode ` 这个请求，记录返回的 `session_id`（请勿泄露你的`session_id`，这相当于你的用户名密码）(`session_id`有2个小时有效期，把握好这个时间)(如果找不到这个请求，也可以多翻翻其他的请求，这个session_id很多地方都有，比如你找个积分很多的商品提交下就看到了)
 5. clone这个仓库，进入到src文件夹，打开命令行，安装依赖项，`npm install http`、`npm install request`、`npm install js-beautify` 如果你运行的时候还提示有module找不到，按照提示自行安装
 6. 在 迪粉汇+ 小程序里，`我的` -> `收货地址`, 维护好你的收货地址并记录这些信息
 7. 打开index.js，更新`var session_id = "<your session_id got by Fiddler>";` 里面的session_id值， 更新函数 `submit_mask_order` 里你的 `body` 为你的收货地址信息（和6中的一致）(**`重要!重要!!重要!!!`**)
