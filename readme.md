@@ -97,7 +97,7 @@ Accept-Encoding: gzip, deflate
 
 通过几个抓包对比分析基本可以推论，服务器通过`appkey`、`checksum`、`curtime`、`nonce`进行重放攻击，通过请求body里的`session_id`来进行用户身份识别。
 
-具体这几个值`appkey`、`checksum`、`curtime`、`nonce`怎么获取可以通过分析js文件得到（需要对小程序进行反编译，感兴趣的自行度娘，这里需要很大的耐心）。
+具体这几个值`appkey`、`checksum`、`curtime`、`nonce`怎么获取可以通过分析js文件得到（需要对小程序进行反编译，感兴趣的自行度娘，这里需要很大的耐心）。(我已经梳理好了，见`src/header.js`)
 
 `session_id`的话了解小程序登录机制的都知道，小程序在login的时候会给服务器传回一个`code`，然后服务器通过`appid`、`app_secret`和`code`来调用微信API获取`session_key`, 然后服务端自己生产一个`session_id`和`sessiong_key`的mapping并把`session_id`返回客户端。（这个`session_id`就是服务自己维护的凭证，通过抓包可以看到迪粉汇小程序的session_id过期时间是7200s）
 
