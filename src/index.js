@@ -127,7 +127,7 @@ function beautify_js(str){
 var h = u.getHeader();
 console.log(h);
 
-get_order_list();
+// get_order_list();
 
 // get_goods_detail();
 
