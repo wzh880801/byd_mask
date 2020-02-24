@@ -8,6 +8,8 @@
 ## 吐槽
 
 在疫情影响下，口罩成了最紧俏的物品，很多地方是一罩难求！这个时候BYD站出来改造了一些车间开始生产口罩并计划向车主提供福利，这本是一件好事，可却活脱脱演绎成了一场讨人厌的营销！被广大车主吐槽没有诚意，搞饥饿营销！结果广大车主口罩没抢到却抢了一肚子气！
+
+![rich](https://cache.bydauto.com.cn/attachment/202002/18/102617vajbmnpybyylsomo.png)
         
 笔者是一名BYD新能源车主，这两天对BYD小程序 `迪粉汇+` 上兑换口罩的体验那真是酸爽！要拿到这一份BYD的心意，你得满足这2个条件：
 
@@ -22,7 +24,7 @@
 
 没有截图，借官方的图一下：
 
-![Demo Page](https://raw.githubusercontent.com/wzh880801/byd_mask/master/images/byd.jpg)
+![Demo Page](http://cache.bydauto.com.cn/xxl/202002/22/224909bhphyqlmvy4ozyj4.jpg)
 
 ## 决定用知识来改变命运
 
