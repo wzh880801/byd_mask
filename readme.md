@@ -48,7 +48,7 @@
 
 # 行动
 
-在Windows电脑上安装Fiddler并启用对https的捕获，然后按照微信客户端，手机分享小程序给电脑，电脑端打开，陆续点击相关界面，就可以看到相关的请求包。（就是一个个的https请求）
+在Windows电脑上安装Fiddler并启用对https的捕获，然后安装微信客户端，手机分享小程序给电脑，电脑端打开，陆续点击相关界面，就可以看到相关的请求包。（就是一个个的https请求）
 
 提交订单的请求抓包：
 
@@ -67,8 +67,32 @@ content-type: application/json
 Referer: https://servicewechat.com/wxa28c31d4ff7ae869/222/page-frame.html
 Accept-Encoding: gzip, deflate
 
-{"user_name":"微信昵称","product_id":"410","total_price":600,"real_name":"真实姓名","phone":"手机号","accept_name":"收货人","mobile":"手机号","addr":"收货地址","province":"北京","city":"北京","county":"","payable_score":600,"goods_id":"163","goods_nums":1,"seckill":"","redeem_code":"","session_id":"<session_id>"}
+{"user_name":"微信昵称","product_id":"410","total_price":600,"real_name":"微信昵称","phone":"手机号","accept_name":"收货人","mobile":"手机号","addr":"收货地址","province":"北京","city":"北京","county":"","payable_score":600,"goods_id":"163","goods_nums":1,"seckill":"","redeem_code":"","session_id":"<session_id>"}
 
+```
+
+看到了吧，其实就是把商品信息和收货信息放到一个请求体里发出去。
+
+```json
+{
+  "user_name": "<你的微信昵称>", 
+  "product_id": "410", 
+  "total_price": 600, 
+  "real_name": "<你的微信昵称>", 
+  "phone": "<你的手机号>", 
+  "accept_name": "<收货人姓名>", 
+  "mobile": "<你的收货手机>", 
+  "addr": "<你的收货地址>", 
+  "province": "<你的收货省份>", 
+  "city": "<你的收货城市>", 
+  "county": "", 
+  "payable_score": 600, 
+  "goods_id": "163", 
+  "goods_nums": 1, 
+  "seckill": "", 
+  "redeem_code": "", 
+  "session_id": "session_id"
+}
 ```
 
 通过几个抓包对比分析基本可以推论，服务器通过`appkey`、`checksum`、`curtime`、`nonce`进行重放攻击，通过请求body里的`session_id`来进行用户身份识别。
@@ -76,6 +100,8 @@ Accept-Encoding: gzip, deflate
 具体这几个值`appkey`、`checksum`、`curtime`、`nonce`怎么获取可以通过分析js文件得到（需要对小程序进行反编译，感兴趣的自行度娘，这里需要很大的耐心）。
 
 `session_id`的话了解小程序登录机制的都知道，小程序在login的时候会给服务器传回一个`code`，然后服务器通过`appid`、`app_secret`和`code`来调用微信API获取`session_key`, 然后服务端自己生产一个`session_id`和`sessiong_key`的mapping并把`session_id`返回客户端。（这个`session_id`就是服务自己维护的凭证，通过抓包可以看到迪粉汇小程序的session_id过期时间是7200s）
+
+![wechat miniprogram](https://res.wx.qq.com/wxdoc/dist/assets/img/api-login.2fcc9f35.jpg)
 
 小程序的鉴权机制决定了是无法在小程序外获取到登录凭证的，但登录凭证服务端是要返回给客户端的，所以登录凭证可以通过抓包来看到。
 
