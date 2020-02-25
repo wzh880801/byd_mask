@@ -97,7 +97,7 @@ Accept-Encoding: gzip, deflate
 }
 ```
 
-通过几个抓包对比分析基本可以推论，服务器通过`appkey`、`checksum`、`curtime`、`nonce`进行重放攻击，通过请求body里的`session_id`来进行用户身份识别。
+通过几个抓包对比分析基本可以推论，服务器通过`appkey`、`checksum`、`curtime`、`nonce`进行重放攻击验证，通过请求body里的`session_id`来进行用户身份识别。
 
 具体这几个值`appkey`、`checksum`、`curtime`、`nonce`怎么获取可以通过分析js文件得到（需要对小程序进行反编译，感兴趣的自行度娘，这里需要很大的耐心）。(我已经梳理好了，见`src/header.js`)
 
@@ -142,3 +142,7 @@ Accept-Encoding: gzip, deflate
 }
 
 ```
+
+## 我没有技术基础咋办
+
+- 看Release里面，有傻瓜式的客户端GUI程序，可以直接打开运行。（集成了自动抓包分析、订单提交等）
